@@ -1,0 +1,88 @@
+import win.ui;
+/*DSG{{*/
+var frmSetting = win.form(text="aardio form";right=759;bottom=469;bgcolor=16777215)
+frmSetting.add(
+editContainerPort={cls="plus";left=155;top=143;right=252;bottom=169;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);num=1;textPadding={top=6;bottom=2};z=7};
+editHostPort={cls="plus";left=378;top=143;right=475;bottom=169;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);num=1;textPadding={top=6;bottom=2};z=11};
+editRegistryPasssword={cls="plus";left=445;top=105;right=591;bottom=131;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);password=1;textPadding={top=6;bottom=2};z=5};
+editRegistryUrl={cls="plus";text="registry.cn-qingdao.aliyuncs.com/namespace/container-name:latest";left=155;top=73;right=732;bottom=99;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=1};
+editRegistryUsername={cls="plus";left=155;top=105;right=312;bottom=131;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=3};
+editSshHost={cls="plus";left=155;top=232;right=331;bottom=258;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=9};
+editSshPassword={cls="plus";left=432;top=261;right=578;bottom=287;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);password=1;textPadding={top=6;bottom=2};z=14};
+editSshUsername={cls="plus";text="root";left=155;top=265;right=312;bottom=291;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=16};
+editWorkDir={cls="plus";left=154;top=22;right=731;bottom=48;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=17};
+static={cls="static";text="容器仓库地址：";left=4;top=84;right=152;bottom=101;align="right";dl=1;dt=1;transparent=1;z=2};
+static2={cls="static";text="容器仓库登录用户名：";left=10;top=117;right=152;bottom=134;align="right";dl=1;dt=1;transparent=1;z=4};
+static3={cls="static";text="映射到主机端口：";left=260;top=150;right=373;bottom=167;align="right";dl=1;dt=1;transparent=1;z=12};
+static4={cls="static";text="仓库登录密码：";left=322;top=117;right=427;bottom=134;align="right";dl=1;dt=1;transparent=1;z=6};
+static5={cls="static";text="SSH 登录用户名：";left=10;top=273;right=152;bottom=290;align="right";dl=1;dt=1;transparent=1;z=13};
+static6={cls="static";text="容器服务端口：";left=7;top=150;right=152;bottom=167;align="right";dl=1;dt=1;transparent=1;z=8};
+static7={cls="static";text="Linux 服务器地址：";left=3;top=238;right=152;bottom=255;align="right";dl=1;dt=1;transparent=1;z=10};
+static8={cls="static";text="本地工作目录：";left=3;top=33;right=151;bottom=50;align="right";dl=1;dt=1;transparent=1;z=18};
+static9={cls="static";text="SSH 登录密码：";left=309;top=273;right=414;bottom=290;align="right";dl=1;dt=1;transparent=1;z=15}
+)
+/*}}*/
+
+frmSetting.show();
+
+subscribe("docker-update-setting",function(docker){
+	//var docker = process.docker(); 
+	if(!io.exist(frmSetting.editWorkDir.text)){
+		docker.lasterr = "请指定正确的工作目录";
+		return;
+	}
+	
+	if(!#frmSetting.editRegistryUrl.text){
+		docker.lasterr = "请指定正确的仓库地址";
+		return;	
+	}
+	
+	docker.init(frmSetting.editWorkDir.text,frmSetting.editRegistryUrl.text);
+	docker.ssh.host = frmSetting.editSshHost.text;
+	docker.ssh.username = frmSetting.editSshUsername.text;
+	docker.ssh.password = frmSetting.editSshPassword.text;
+	docker.username = frmSetting.editRegistryUsername.text;
+	docker.password = frmSetting.editRegistryPasssword.text;
+	docker.setPort(frmSetting.editHostPort.text,frmSetting.editHostPort.text);
+	
+	if(!#docker.ssh.host){
+		docker.lasterr = "请指定正确的 SSH 服务器地址";
+		return;	
+	}
+	
+	if(!#docker.username){
+		docker.lasterr = "请指定 Docker 仓库登录用户名";
+		return;	
+	}
+	
+	if(!#docker.password){
+		docker.lasterr = "请指定 Docker 仓库登录用密码";
+		return;	
+	}
+	
+	if(!tonumber(frmSetting.editHostPort.text)){
+		docker.lasterr = "请指定正确的主机端口";
+		return;	
+	}
+		
+} )
+
+import config;
+frmSetting.bindConfig( config.frmSetting,{
+	edit = "text";
+	radiobutton = "checked";
+	checkbox = "checked";
+	combobox = "selIndex";
+	plus ={
+		["^chk"] = "checked";
+		["^edit"] = "text";
+	};
+	
+} );
+
+if(io.exist("/Dockerfile") ){
+	frmSetting.editWorkDir.text = io.fullpath("/");
+}
+
+win.loopMessage();
+return frmSetting;

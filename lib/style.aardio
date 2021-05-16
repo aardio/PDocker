@@ -1,0 +1,14 @@
+﻿
+namespace style;
+	
+button = {
+	background={
+		default=0xFF8DB0AE;
+		disabled=0xFFCCCCCC;
+		hover=0xFF928BB3
+	};
+	color={
+		default=0xFF000000;
+		disabled=0xFF6D6D6D
+	}
+}

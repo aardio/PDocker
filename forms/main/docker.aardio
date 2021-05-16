@@ -1,0 +1,151 @@
+import fonts.fontAwesome;
+import win.ui;
+/*DSG{{*/
+var frmDocker = win.form(text="aardio form";right=938;bottom=638;bgcolor=16777215)
+frmDocker.add(
+btnBackgroundRunOnLocal={cls="plus";text="本地后台运行";left=734;top=236;right=899;bottom=266;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1B8';notify=1;textPadding={left=39};z=10};
+btnBackgroundRunOnServer={cls="plus";text="服务器后台运行";left=734;top=148;right=899;bottom=178;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AE';notify=1;textPadding={left=39};z=8};
+btnDockerCreate={cls="plus";text="本地创建镜像";left=734;top=33;right=899;bottom=63;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AD';notify=1;textPadding={left=39};z=6};
+btnDockerPush={cls="plus";text="推送到服务器";left=734;top=77;right=899;bottom=107;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0EE';notify=1;textPadding={left=39};z=7};
+btnGetLocalContainerLog={cls="plus";text="本地容器日志";left=734;top=552;right=899;bottom=582;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=16};
+btnGetServerContainerLog={cls="plus";text="服务器容器日志";left=734;top=516;right=899;bottom=546;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=15};
+btnPruneImageOnLocal={cls="plus";text="清理本地镜像";left=734;top=404;right=899;bottom=434;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1C0';notify=1;textPadding={left=39};z=14};
+btnRemoveContainerOnLocal={cls="plus";text="移除本地容器";left=734;top=356;right=899;bottom=386;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1F8';notify=1;textPadding={left=39};z=13};
+btnRunOnLocal={cls="plus";text="本地前台运行";left=734;top=280;right=899;bottom=310;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=12};
+btnRunOnServer={cls="plus";text="服务器前台运行";left=734;top=193;right=899;bottom=223;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=9};
+editDocker={cls="richedit";left=5;top=13;right=702;bottom=620;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=5};
+editLogLimit={cls="edit";text="100";left=838;top=486;right=875;bottom=507;align="right";dr=1;dt=1;edge=1;multiline=1;z=17};
+groupbox={cls="groupbox";text="构建";left=716;top=10;right=912;bottom=118;dr=1;dt=1;edge=1;z=4};
+groupbox2={cls="groupbox";text="运行";left=716;top=126;right=912;bottom=322;dr=1;dt=1;edge=1;z=3};
+groupbox3={cls="groupbox";text="清理";left=716;top=333;right=912;bottom=448;dr=1;dt=1;edge=1;z=2};
+groupbox4={cls="groupbox";text="日志";left=716;top=461;right=912;bottom=599;dr=1;dt=1;edge=1;z=1};
+plusWebSite={cls="plus";text="Star";left=816;top=607;right=893;bottom=638;align="left";db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align="left";font=LOGFONT(h=-19;name='FontAwesome');padding={left=15;top=1}};iconText='\uF09B';notify=1;textPadding={left=35;bottom=1};z=11};
+spinLogLimit={cls="spin";left=876;top=485;right=896;bottom=506;dr=1;dt=1;nthousands=1;z=19};
+static={cls="static";text="日志条数:";left=746;top=488;right=823;bottom=512;align="right";dr=1;dt=1;transparent=1;z=18}
+)
+/*}}*/
+
+import process.docker;
+var docker = process.docker(); 
+docker.logger = frmDocker.editDocker;
+
+docker.updateSetting = function(){
+	docker.lasterr = null;
+	publish("docker-update-setting",docker)
+	if(docker.lasterr){
+		frmDocker.msgErr(docker.lasterr)
+		return false;
+	}	
+	
+	return true;
+}
+
+frmDocker.btnDockerCreate.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;
+	
+	frmDocker.btnDockerCreate.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'} 
+	var ok,err = docker.create()
+	frmDocker.btnDockerCreate.disabledText = null;	
+}
+
+frmDocker.btnDockerPush.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnDockerPush.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.push();
+	frmDocker.btnDockerPush.disabledText = null;		
+}
+
+frmDocker.btnBackgroundRunOnServer.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnBackgroundRunOnServer.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.runServer(true);
+	frmDocker.btnBackgroundRunOnServer.disabledText = null;	
+}
+
+frmDocker.btnRunOnServer.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnRunOnServer.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.runServer(false);
+	frmDocker.btnRunOnServer.disabledText = null;	
+}
+
+frmDocker.btnBackgroundRunOnLocal.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnBackgroundRunOnLocal.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.runLocal(true);
+	frmDocker.btnBackgroundRunOnLocal.disabledText = null;
+}
+
+frmDocker.btnRunOnLocal.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnRunOnLocal.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.runLocal(false);
+	frmDocker.btnRunOnLocal.disabledText = null;
+}
+
+frmDocker.btnRemoveContainerOnLocal.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnRemoveContainerOnLocal.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.removeContainerServer();
+	frmDocker.btnRemoveContainerOnLocal.disabledText = null;
+}
+
+frmDocker.btnPruneImageOnLocal.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnPruneImageOnLocal.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.pruneImagesLocal();
+	frmDocker.btnPruneImageOnLocal.disabledText = null;
+}
+
+frmDocker.btnGetServerContainerLog.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnGetServerContainerLog.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.startServerLog(frmDocker.editLogLimit.text);
+	frmDocker.btnGetServerContainerLog.disabledText = null;
+}
+
+frmDocker.btnGetLocalContainerLog.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnGetLocalContainerLog.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
+	docker.startLocalLog(frmDocker.editLogLimit.text);
+	frmDocker.btnGetLocalContainerLog.disabledText = null;	
+}
+
+frmDocker.plusWebSite.skin(
+	color = {  
+		hover = 0xFFFF0000;  
+		active = 0xFF00FF00;  
+	}
+)
+
+frmDocker.plusWebSite.oncommand = function(id,event){
+	import process
+	process.openUrl("https://github.com/aardio/P.Docker")
+}
+
+import style;
+frmDocker.btnDockerCreate.skin(style.button)
+frmDocker.btnBackgroundRunOnLocal.skin(style.button)
+frmDocker.btnBackgroundRunOnServer.skin(style.button)
+frmDocker.btnDockerCreate.skin(style.button);
+frmDocker.btnDockerPush.skin(style.button);
+frmDocker.btnGetLocalContainerLog.skin(style.button);
+frmDocker.btnGetServerContainerLog.skin(style.button);
+frmDocker.btnPruneImageOnLocal.skin(style.button);
+frmDocker.btnRemoveContainerOnLocal.skin(style.button);
+frmDocker.btnRunOnLocal.skin(style.button);
+frmDocker.btnRunOnServer.skin(style.button);
+frmDocker.spinLogLimit.buddy = frmDocker.editLogLimit;
+
+frmDocker.show();
+win.loopMessage();
+return frmDocker;
