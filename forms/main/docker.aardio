@@ -1,27 +1,34 @@
 import fonts.fontAwesome;
 import win.ui;
 /*DSG{{*/
-var frmDocker = win.form(text="aardio form";right=938;bottom=638;bgcolor=16777215)
+var frmDocker = win.form(text="aardio form";right=938;bottom=678;bgcolor=16777215)
 frmDocker.add(
-btnBackgroundRunOnLocal={cls="plus";text="本地后台运行";left=734;top=236;right=899;bottom=266;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1B8';notify=1;textPadding={left=39};z=10};
-btnBackgroundRunOnServer={cls="plus";text="服务器后台运行";left=734;top=148;right=899;bottom=178;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AE';notify=1;textPadding={left=39};z=8};
-btnDockerCreate={cls="plus";text="本地创建镜像";left=734;top=33;right=899;bottom=63;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AD';notify=1;textPadding={left=39};z=6};
-btnDockerPush={cls="plus";text="推送到服务器";left=734;top=77;right=899;bottom=107;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0EE';notify=1;textPadding={left=39};z=7};
-btnGetLocalContainerLog={cls="plus";text="本地容器日志";left=734;top=552;right=899;bottom=582;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=16};
-btnGetServerContainerLog={cls="plus";text="服务器容器日志";left=734;top=516;right=899;bottom=546;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=15};
-btnPruneImageOnLocal={cls="plus";text="清理本地镜像";left=734;top=404;right=899;bottom=434;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1C0';notify=1;textPadding={left=39};z=14};
-btnRemoveContainerOnLocal={cls="plus";text="移除本地容器";left=734;top=356;right=899;bottom=386;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1F8';notify=1;textPadding={left=39};z=13};
-btnRunOnLocal={cls="plus";text="本地前台运行";left=734;top=280;right=899;bottom=310;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=12};
-btnRunOnServer={cls="plus";text="服务器前台运行";left=734;top=193;right=899;bottom=223;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=9};
-editDocker={cls="richedit";left=5;top=13;right=702;bottom=620;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=5};
-editLogLimit={cls="edit";text="100";left=838;top=486;right=875;bottom=507;align="right";dr=1;dt=1;edge=1;multiline=1;z=17};
-groupbox={cls="groupbox";text="构建";left=716;top=10;right=912;bottom=118;dr=1;dt=1;edge=1;z=4};
-groupbox2={cls="groupbox";text="运行";left=716;top=126;right=912;bottom=322;dr=1;dt=1;edge=1;z=3};
-groupbox3={cls="groupbox";text="清理";left=716;top=333;right=912;bottom=448;dr=1;dt=1;edge=1;z=2};
-groupbox4={cls="groupbox";text="日志";left=716;top=461;right=912;bottom=599;dr=1;dt=1;edge=1;z=1};
-plusWebSite={cls="plus";text="Star";left=816;top=607;right=893;bottom=638;align="left";db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align="left";font=LOGFONT(h=-19;name='FontAwesome');padding={left=15;top=1}};iconText='\uF09B';notify=1;textPadding={left=35;bottom=1};z=11};
-spinLogLimit={cls="spin";left=876;top=485;right=896;bottom=506;dr=1;dt=1;nthousands=1;z=19};
-static={cls="static";text="日志条数:";left=746;top=488;right=823;bottom=512;align="right";dr=1;dt=1;transparent=1;z=18}
+btnBackgroundRunOnLocal={cls="plus";text="本地后台运行";left=734;top=198;right=899;bottom=228;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1B8';notify=1;textPadding={left=39};z=10};
+btnBackgroundRunOnServer={cls="plus";text="服务器后台运行";left=734;top=128;right=899;bottom=158;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AE';notify=1;textPadding={left=39};z=8};
+btnContainerIpServer={cls="plus";text="查询服务器容器信息";left=515;top=647;right=709;bottom=678;align="left";db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome');padding={left=15;top=1}};iconText='\uF002';notify=1;textPadding={left=35;bottom=1};z=25};
+btnDockerCreate={cls="plus";text="本地创建镜像";left=734;top=30;right=899;bottom=60;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0AD';notify=1;textPadding={left=39};z=6};
+btnDockerPush={cls="plus";text="推送到服务器";left=734;top=65;right=899;bottom=95;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF0EE';notify=1;textPadding={left=39};z=7};
+btnGetLocalContainerLog={cls="plus";text="本地容器日志";left=734;top=607;right=899;bottom=637;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=16};
+btnGetServerContainerLog={cls="plus";text="服务器容器日志";left=734;top=571;right=899;bottom=601;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF039';notify=1;textPadding={left=39};z=15};
+btnPruneImageOnLocal={cls="plus";text="清理本地镜像";left=734;top=339;right=899;bottom=369;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1C0';notify=1;textPadding={left=39};z=14};
+btnRemoveContainerOnLocal={cls="plus";text="移除本地容器";left=734;top=302;right=899;bottom=332;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF1F8';notify=1;textPadding={left=39};z=13};
+btnRunOnLocal={cls="plus";text="本地前台运行";left=734;top=235;right=899;bottom=265;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=12};
+btnRunOnServer={cls="plus";text="服务器前台运行";left=734;top=163;right=899;bottom=193;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF09D';notify=1;textPadding={left=39};z=9};
+btnStopLog={cls="plus";left=873;top=538;right=904;bottom=566;align="left";disabled=1;dr=1;dt=1;font=LOGFONT(h=-15);iconStyle={font=LOGFONT(h=-19;name='FontAwesome')};iconText='\uF28D';notify=1;textPadding={left=35;bottom=1};z=23};
+btnTerminalContainerLocal={cls="plus";text="本地容器终端";left=734;top=473;right=899;bottom=503;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF108';notify=1;textPadding={left=39};z=22};
+btnTerminalContainerServer={cls="plus";text="服务器容器终端";left=734;top=438;right=899;bottom=468;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF108';notify=1;textPadding={left=39};z=21};
+btnTerminalServer={cls="plus";text="服务器终端";left=734;top=402;right=899;bottom=432;align="left";bgcolor=-5197169;dr=1;dt=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=20}};iconText='\uF108';notify=1;textPadding={left=39};z=24};
+btnWebSite={cls="plus";text="Star";left=816;top=647;right=893;bottom=678;align="left";db=1;dr=1;font=LOGFONT(h=-15);iconStyle={align="left";font=LOGFONT(h=-19;name='FontAwesome');padding={left=15;top=1}};iconText='\uF09B';notify=1;textPadding={left=35;bottom=1};z=11};
+editDocker={cls="richedit";left=5;top=13;right=702;bottom=645;db=1;dl=1;dr=1;dt=1;edge=1;hscroll=1;multiline=1;vscroll=1;z=5};
+editInspectFormat={cls="plus";text="{{ .NetworkSettings.IPAddress }}";left=24;top=648;right=512;bottom=674;align="right";border={bottom=1;color=-6908266};db=1;dl=1;dr=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=26};
+editLogLimit={cls="edit";text="100";left=811;top=541;right=848;bottom=562;align="right";dr=1;dt=1;edge=1;multiline=1;z=17};
+groupbox={cls="groupbox";text="构建";left=716;top=10;right=912;bottom=105;dr=1;dt=1;edge=1;transparent=1;z=4};
+groupbox2={cls="groupbox";text="运行";left=716;top=106;right=912;bottom=277;dr=1;dt=1;edge=1;transparent=1;z=3};
+groupbox3={cls="groupbox";text="清理";left=716;top=279;right=912;bottom=380;dr=1;dt=1;edge=1;transparent=1;z=2};
+groupbox4={cls="groupbox";text="日志";left=716;top=526;right=912;bottom=645;dr=1;dt=1;edge=1;transparent=1;z=1};
+groupbox5={cls="groupbox";text="终端";left=716;top=382;right=912;bottom=521;dr=1;dt=1;edge=1;transparent=1;z=20};
+spinLogLimit={cls="spin";left=849;top=540;right=869;bottom=561;dr=1;dt=1;nthousands=1;z=19};
+static={cls="static";text="日志条数:";left=719;top=543;right=796;bottom=567;align="right";dr=1;dt=1;transparent=1;z=18}
 )
 /*}}*/
 
@@ -53,6 +60,7 @@ frmDocker.btnDockerPush.oncommand = function(id,event){
 	
 	frmDocker.btnDockerPush.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
 	docker.push();
+	
 	frmDocker.btnDockerPush.disabledText = null;		
 }
 
@@ -61,6 +69,7 @@ frmDocker.btnBackgroundRunOnServer.oncommand = function(id,event){
 	
 	frmDocker.btnBackgroundRunOnServer.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
 	docker.runServer(true);
+	
 	frmDocker.btnBackgroundRunOnServer.disabledText = null;	
 }
 
@@ -108,28 +117,73 @@ frmDocker.btnGetServerContainerLog.oncommand = function(id,event){
 	if(!docker.updateSetting()) return;	
 	
 	frmDocker.btnGetServerContainerLog.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
-	docker.startServerLog(frmDocker.editLogLimit.text);
-	frmDocker.btnGetServerContainerLog.disabledText = null;
+	var prcs = docker.startServerLog(frmDocker.editLogLimit.text);
+	if(prcs){
+		frmDocker.btnStopLog.disabled = false;
+		prcs.beforeClose = function(){
+			frmDocker.btnGetServerContainerLog.disabledText = null;
+			frmDocker.btnStopLog.disabled = true;
+		}
+	} 
+	else {
+		frmDocker.editDocker.print("打开服务器容器失败");
+		frmDocker.btnGetServerContainerLog.disabledText = null;
+	}
 }
 
 frmDocker.btnGetLocalContainerLog.oncommand = function(id,event){
 	if(!docker.updateSetting()) return;	
 	
-	frmDocker.btnGetLocalContainerLog.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'}  
-	docker.startLocalLog(frmDocker.editLogLimit.text);
-	frmDocker.btnGetLocalContainerLog.disabledText = null;	
+	frmDocker.btnGetLocalContainerLog.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250'} 
+	var prcs = docker.startLocalLog(frmDocker.editLogLimit.text);
+	if(prcs){
+		
+		frmDocker.btnStopLog.disabled = false;
+		prcs.beforeClose = function(){
+			frmDocker.btnGetLocalContainerLog.disabledText = null;
+			frmDocker.btnStopLog.disabled = true;
+		}
+	}
+	else {
+		frmDocker.editDocker.print("打开本地容器失败");
+		frmDocker.btnGetServerContainerLog.disabledText = null;
+	}
 }
 
-frmDocker.plusWebSite.skin(
-	color = {  
-		hover = 0xFFFF0000;  
-		active = 0xFF00FF00;  
-	}
-)
+frmDocker.btnTerminalServer.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	docker.terminalServer(false);	
+}
 
-frmDocker.plusWebSite.oncommand = function(id,event){
+frmDocker.btnTerminalContainerServer.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	docker.terminalServer(true);	
+}
+
+frmDocker.btnTerminalContainerLocal.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	docker.terminalLocal();
+}
+
+frmDocker.btnWebSite.oncommand = function(id,event){
 	import process
 	process.openUrl("https://github.com/aardio/P.Docker")
+}
+
+frmDocker.btnStopLog.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	docker.stopLog();
+}
+
+frmDocker.btnContainerIpServer.oncommand = function(id,event){
+	if(!docker.updateSetting()) return;	
+	
+	frmDocker.btnContainerIpServer.disabledText = {'\uF254';'\uF251';'\uF252';'\uF253';'\uF250';text=''}
+	var ip = docker.inspectServer(frmDocker.editInspectFormat.text);
+	if(ip){
+		frmDocker.editDocker.print(ip);
+	}
+	frmDocker.btnContainerIpServer.disabledText = null;
 }
 
 import style;
@@ -144,7 +198,14 @@ frmDocker.btnPruneImageOnLocal.skin(style.button);
 frmDocker.btnRemoveContainerOnLocal.skin(style.button);
 frmDocker.btnRunOnLocal.skin(style.button);
 frmDocker.btnRunOnServer.skin(style.button);
+frmDocker.btnTerminalContainerServer.skin(style.button);
+frmDocker.btnTerminalContainerLocal.skin(style.button);
+frmDocker.btnTerminalServer.skin(style.button);
+frmDocker.btnWebSite.skin(style.plainButton);
+frmDocker.btnStopLog.skin(style.plainButton);
+frmDocker.btnContainerIpServer.skin(style.plainButton);
 frmDocker.spinLogLimit.buddy = frmDocker.editLogLimit;
+
 
 frmDocker.show();
 win.loopMessage();
