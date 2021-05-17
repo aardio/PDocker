@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="容器发布工具" libEmbed="true" icon="\app.ico" ui="win" output=" P.Docker.exe" CompanyName="aardio" FileDescription="容器发布工具" LegalCopyright="Copyright (C) aardio 2021" ProductName="容器发布工具" InternalName=" P.Docker.exe" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+<project ver="10" name="容器发布工具" libEmbed="true" icon="\app.ico" ui="win" output=" P.Docker.exe" CompanyName="aardio" FileDescription="容器发布工具" LegalCopyright="Copyright (C) aardio 2021" ProductName="容器发布工具" InternalName=" P.Docker.exe" FileVersion="1.0.0.0" ProductVersion="1.0.0.0" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main" path="main.aardio"/>
 	<folder name="窗体" path="forms" comment="" embed="true">
 		<folder name="main" path="forms\main" embed="true" comment="目录">

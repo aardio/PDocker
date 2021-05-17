@@ -43,7 +43,7 @@ subscribe("docker-update-setting",function(docker){
 	docker.ssh.password = frmSetting.editSshPassword.text;
 	docker.username = frmSetting.editRegistryUsername.text;
 	docker.password = frmSetting.editRegistryPasssword.text;
-	docker.setPort(frmSetting.editHostPort.text,frmSetting.editHostPort.text);
+	docker.setPort(frmSetting.editContainerPort.text,frmSetting.editHostPort.text);
 	
 	if(!#docker.ssh.host){
 		docker.lasterr = "请指定正确的 SSH 服务器地址";
