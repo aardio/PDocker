@@ -1,3 +1,4 @@
+import fonts.fontAwesome;
 import win.ui;
 /*DSG{{*/
 var frmSetting = win.form(text="aardio form";right=759;bottom=469;bgcolor=16777215)
@@ -5,13 +6,16 @@ frmSetting.add(
 editContainerPort={cls="plus";left=155;top=143;right=252;bottom=169;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);num=1;textPadding={top=6;bottom=2};z=7};
 editHostPort={cls="plus";left=378;top=143;right=475;bottom=169;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);num=1;textPadding={top=6;bottom=2};z=11};
 editRegistryPasssword={cls="plus";left=445;top=105;right=591;bottom=131;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);password=1;textPadding={top=6;bottom=2};z=5};
-editRegistryUrl={cls="plus";text="registry.cn-qingdao.aliyuncs.com/namespace/container-name:latest";left=155;top=73;right=732;bottom=99;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=1};
+editRegistryUrl={cls="plus";text="registry.cn-hangzhou.aliyuncs.com/namespace/container-name:latest";left=155;top=73;right=695;bottom=99;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=1};
 editRegistryUsername={cls="plus";left=155;top=105;right=312;bottom=131;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=3};
 editSshHost={cls="plus";left=155;top=232;right=331;bottom=258;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=9};
 editSshPassword={cls="plus";left=432;top=261;right=578;bottom=287;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);password=1;textPadding={top=6;bottom=2};z=14};
 editSshUsername={cls="plus";text="root";left=155;top=265;right=312;bottom=291;align="left";border={bottom=1;color=-6908266};dl=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=16};
 editWorkDir={cls="plus";left=154;top=22;right=731;bottom=48;align="left";border={bottom=1;color=-6908266};dl=1;dr=1;dt=1;editable=1;font=LOGFONT(h=-13);textPadding={top=6;bottom=2};z=17};
+linkAliyun={cls="plus";text='\uF08E';left=694;top=75;right=727;bottom=99;dr=1;dt=1;font=LOGFONT(h=-15;name='FontAwesome');notify=1;z=20};
 static={cls="static";text="容器仓库地址：";left=4;top=84;right=152;bottom=101;align="right";dl=1;dt=1;transparent=1;z=2};
+static10={cls="static";text="示例：192.168.1.100 或 192.168.1.100:22";left=346;top=243;right=644;bottom=264;color=6908265;dl=1;dt=1;transparent=1;z=19};
+static11={cls="static";text="如果配置了 SSH Key 可以不用输入密码";left=433;top=298;right=654;bottom=322;color=6908265;dl=1;dt=1;transparent=1;z=21};
 static2={cls="static";text="容器仓库登录用户名：";left=10;top=117;right=152;bottom=134;align="right";dl=1;dt=1;transparent=1;z=4};
 static3={cls="static";text="映射到主机端口：";left=260;top=150;right=373;bottom=167;align="right";dl=1;dt=1;transparent=1;z=12};
 static4={cls="static";text="仓库登录密码：";left=322;top=117;right=427;bottom=134;align="right";dl=1;dt=1;transparent=1;z=6};
@@ -34,6 +38,16 @@ subscribe("docker-update-setting",function(docker){
 	
 	if(!#frmSetting.editRegistryUrl.text){
 		docker.lasterr = "请指定正确的仓库地址";
+		return;	
+	}
+	
+	if(frmSetting.editRegistryUrl.text=="registry.cn-hangzhou.aliyuncs.com/namespace/container-name:latest"){
+		docker.lasterr = "请将设置中的演示仓库地址修改为实际要使用的仓库地址";
+		return;	
+	}
+	
+	if( string.indexOf(frmSetting.editRegistryUrl.text,"/namespace/container-name") ){
+		docker.lasterr = "仓库地址不应包含演示名称：/namespace/container-name";
 		return;	
 	}
 	
@@ -82,6 +96,13 @@ frmSetting.bindConfig( config.frmSetting,{
 
 if(io.exist("/Dockerfile") ){
 	frmSetting.editWorkDir.text = io.fullpath("/");
+}
+
+import style;
+frmSetting.linkAliyun.skin(style.plainButton)
+frmSetting.linkAliyun.oncommand = function(id,event){
+	import process;
+	process.openUrl("https://cr.console.aliyun.com")
 }
 
 win.loopMessage();
