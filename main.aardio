@@ -13,6 +13,14 @@ titleBar={cls="bkplus";left=0;top=0;right=1022;bottom=38;bgcolor=6318930;dl=1;dr
 )
 /*}}*/
 
+import win.ui.atom;
+var atom,hwnd = mainForm.atom("{3B6F026D-D2FA-4A39-9BAB-E29DE8766CF0}。PDocker");
+if(!atom){
+	win.showForeground(hwnd);
+	win.quitMessage();	
+	return;
+}
+
 import win.dlg.message;
 import win.ui.simpleWindow;
 win.ui.simpleWindow( mainForm );
