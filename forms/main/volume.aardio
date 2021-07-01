@@ -15,8 +15,8 @@ frmVolume.show();
 
 subscribe("docker-update-setting",function(docker){
 	//var docker = process.docker(); 
-	docker.bindVolume = table.array(string.lines(frmVolume.editServer.text))
-	docker.bindVolumeLocal = table.array(string.lines(frmVolume.editLocal.text))  
+	docker.bindVolume = string.splitEx(frmVolume.editServer.text)
+	docker.bindVolumeLocal = string.splitEx(frmVolume.editLocal.text)  
 } )
 
 import config;
